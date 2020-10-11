@@ -37,10 +37,10 @@ jobs:
         uses: actions/setup-python@master
         with:
           python-version: 3.8
-      - name: install swagman
+      - name: install swagmanmock
         run: |
-          pip install swagman 
-          swagman input GWS-DOCS.postman_collection.json
+          pip install swagmanmock 
+          swagmanmock -f json GWS-DOCS.postman_collection.json spec.json
           ls -ltr
         
         
