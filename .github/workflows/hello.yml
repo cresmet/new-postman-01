@@ -38,5 +38,8 @@ jobs:
         with:
           python-version: 3.8
       - name: install swagman
-        run: pip install swagman
+        run: |
+          pip install swagman 
+          swagman -h
+        
         
