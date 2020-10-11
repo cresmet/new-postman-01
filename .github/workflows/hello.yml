@@ -40,7 +40,7 @@ jobs:
       - name: install swagman
         run: |
           pip install swagman 
-          swagman GWS-DOCS.postman_collection.json
+          swagman input GWS-DOCS.postman_collection.json
           ls -ltr
         
         
