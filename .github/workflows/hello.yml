@@ -31,3 +31,12 @@ jobs:
         run: |
           echo Add other actions to build,
           echo test, and deploy your project.
+      # Install python
+      - uses: actions/checkout@v2
+      - name: Set up Python
+        uses: actions/setup-python@master
+        with:
+          python-version: 3.8
+      - name: install swagman
+        run: pip install swagman
+        
