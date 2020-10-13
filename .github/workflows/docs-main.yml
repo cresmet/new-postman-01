@@ -30,4 +30,4 @@ jobs:
         run: |
           echo Add other actions to build,
           run npm install postman2openapi
-          echo test, and deploy your project.
+         
