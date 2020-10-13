@@ -22,7 +22,6 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: '12.x'
-    - run: npm install postman2openapi
-      env:
-        CI: true
-         
+    - run: |
+        npm install postman2openapi
+        postman2openapi GWS-DOCS.postman_collection.json > open.yaml 
