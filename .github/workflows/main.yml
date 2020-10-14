@@ -1,0 +1,24 @@
+# This is a basic workflow to help you get started with Actions
+
+name: RUST CI
+
+# Controls when the action will run. Triggers the workflow on push or pull request
+# events but only for the main branch
+on:
+  push:
+    branches: [ main ]
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  build_and_test:
+    name: Rust project
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions-rs/toolchain@v1
+        with:
+          toolchain: stable
+      - run: |
+          cargo install --git https://github.com/kevinswiber/postman2openapi --features binary
+          postman2openapi GWS-DOCS.postman_collection.json > openapi.yaml
+          cat openapi.yaml
