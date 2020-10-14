@@ -23,4 +23,4 @@ jobs:
           cargo install --git https://github.com/kevinswiber/postman2openapi --features binary
           postman2openapi GWS-DOCS.postman_collection.json >> $FILE
           echo "printing the file..."
-          echo $FILE
+          cat $FILE
