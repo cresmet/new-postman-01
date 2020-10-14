@@ -21,8 +21,4 @@ jobs:
       - run: |
           FILE=./docs/`date +"%Y%m%d"`.yaml
           cargo install --git https://github.com/kevinswiber/postman2openapi --features binary
-          echo converting the file...
-          postman2openapi GWS-DOCS.postman_collection.json > openapi.yaml
-      -run: | 
-          echo openapi.yaml > $FILE
-          echo $FILE saved
+          postman2openapi GWS-DOCS.postman_collection.json > $FILE
