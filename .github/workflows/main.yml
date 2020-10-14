@@ -18,6 +18,8 @@ jobs:
       - uses: actions-rs/toolchain@v1
         with:
           toolchain: stable
+        env:
+          GITHUB_TOKEN: ${{ secrets.PUSH_TOKEN }}
       - run: |
           FILE=./docs/`date +"%Y%m%d"`.yaml
           cargo install --git https://github.com/kevinswiber/postman2openapi --features binary
@@ -36,4 +38,10 @@ jobs:
             git commit -m "Add changes" -a
             echo "::set-output name=push::true"
           fi
-        shell: bash    
+        shell: bash
+
+      - name: Push changes
+        if: steps.commit.outputs.push == 'true'
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}    
