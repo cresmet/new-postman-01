@@ -23,3 +23,4 @@ jobs:
       - run: cargo install --git https://github.com/kevinswiber/postman2openapi --features binary
       - run: cat GWS-DOCS.postman_collection.json | postman2openapi -o json
       - run: postman2openapi GWS-DOCS.postman_collection.json > openapi.yaml
+      - run: cat openapi.yaml
