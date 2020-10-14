@@ -10,8 +10,8 @@ on:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  build_and_test:
-    name: Rust project
+  build:
+    name: Build File
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
