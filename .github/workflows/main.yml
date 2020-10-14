@@ -23,7 +23,8 @@ jobs:
           cargo install --git https://github.com/kevinswiber/postman2openapi --features binary
           postman2openapi GWS-DOCS.postman_collection.json >> $FILE
           echo "printing the file..." $FILE
-    name: Commit file
+    
+      - name: Commit file
         id: commit
         run: |
           git config --local user.email "action@github.com"
