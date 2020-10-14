@@ -18,7 +18,6 @@ jobs:
       - uses: actions-rs/toolchain@v1
         with:
           toolchain: stable
-      - name: Install binary
       - run: |
           FILE=./docs/`date +"%Y%m%d"`.yaml
           cargo install --git https://github.com/kevinswiber/postman2openapi --features binary
