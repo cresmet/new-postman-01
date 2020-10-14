@@ -11,7 +11,7 @@ on:
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   build:
-    name: Build File
+    name: Build file
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -22,5 +22,17 @@ jobs:
           FILE=./docs/`date +"%Y%m%d"`.yaml
           cargo install --git https://github.com/kevinswiber/postman2openapi --features binary
           postman2openapi GWS-DOCS.postman_collection.json >> $FILE
-          echo "printing the file..."
-          cat $FILE
+          echo "printing the file..." $FILE
+    name: Commit file
+        id: commit
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "github-actions"
+          git add --all
+          if [-z "$(git status --porcelain)"]; then
+            echo "::set-output name=push::false"
+          else
+            git commit -m "Add changes" -a
+            echo "::set-output name=push::true"
+          fi
+        shell: bash    
