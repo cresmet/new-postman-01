@@ -21,7 +21,7 @@ jobs:
       - run: |
           FILE=./docs/`date +"%Y%m%d"`.yaml
           cargo install --git https://github.com/kevinswiber/postman2openapi --features binary
-          postman2openapi GWS-DOCS.postman_collection.json >> $FILE
+          postman2openapi GWS-DOCS.postman_collection.json > $FILE
           echo "printing the file..."
     
       - name: Commit files
@@ -42,3 +42,12 @@ jobs:
         uses: ad-m/github-push-action@master
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
+          
+      - name: Write Version to File
+        steps:
+          - uses: actions/checkout@master
+          - name: Update version
+            id: version
+            uses: brettdorrans/write-version-to-file@master
+            with:
+              filename: '/.VERSION'
