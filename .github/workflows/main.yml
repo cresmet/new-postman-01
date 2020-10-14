@@ -18,7 +18,7 @@ jobs:
         with:
           persist-credentials: false
           fetch-depth: 0
-          
+
       - uses: actions-rs/toolchain@v1
         with:
           toolchain: stable
@@ -38,7 +38,7 @@ jobs:
           postman2openapi GWS-DOCS.postman_collection.json > $FILE
           echo "printing the file..." $FILE
     
-      - name: Commit files
+      - name: Commit new files
         id: commit
         run: |
           git config --local user.email "action@github.com"
