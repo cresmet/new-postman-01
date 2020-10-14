@@ -23,31 +23,18 @@ jobs:
           cargo install --git https://github.com/kevinswiber/postman2openapi --features binary
           postman2openapi GWS-DOCS.postman_collection.json > $FILE
           echo "printing the file..."
-    
-      - name: Commit files
-        id: commit
-        run: |
-          git config --local user.email "action@github.com"
-          git config --local user.name "github-actions"
-          git add --all
-          if [-z "$(git status --porcelain)"]; then
-            echo "::set-output name=push::false"
-          else
-            git commit -m "Add changes" -a
-            echo "::set-output name=push::true"
-          fi
-        shell: bash
-      - name: Push changes
-        if: steps.commit.outputs.push == 'true'
-        uses: ad-m/github-push-action@master
+
+    name: Push changes
+      if: steps.commit.outputs.push == 'true'
+      uses: ad-m/github-push-action@master
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          
-      - name: Write Version to File
-        steps:
-          - uses: actions/checkout@master
-          - name: Update version
+
+    name: Write Version to File
+      steps:
+        - uses: actions/checkout@master
+        - name: Update version
             id: version
-            uses: brettdorrans/write-version-to-file@master
-            with:
+          uses: brettdorrans/write-version-to-file@master
+          with:
               filename: '/.VERSION'
