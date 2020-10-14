@@ -19,9 +19,15 @@ jobs:
           persist-credentials: false
           fetch-depth: 0
 
+      - uses: actions/checkout@master
+         with:
+          persist-credentials: false
+          fetch-depth: 0     
+
       - uses: actions-rs/toolchain@v1
         with:
           toolchain: stable
+
       - uses: actions/cache@v2
         with:
           path: |
@@ -51,7 +57,7 @@ jobs:
           fi
         shell: bash
       - name: Push changes
-        if: steps.commit.outputs.push == 'true'
         uses: ad-m/github-push-action@master
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: ${{ github.ref }}
