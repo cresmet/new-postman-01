@@ -18,10 +18,17 @@ jobs:
       - uses: actions-rs/toolchain@v1
         with:
           toolchain: stable
+      - uses: actions/cache@v2
+        with:
+          path: |
+            ~/.cargo/registry
+            ~/.cargo/git
+            target
+          key: ${{ runner.os }}-cargo-${{ hashFiles('**/Cargo.lock') }}          
         env:
           GITHUB_TOKEN: ${{ secrets.PUSH_TOKEN }}
       - run: |
-          FILE=./docs/`date +"%Y%m%d"`.yaml
+          FILE=open-api.yaml
           cargo install --git https://github.com/kevinswiber/postman2openapi --features binary
           postman2openapi GWS-DOCS.postman_collection.json > $FILE
           echo "printing the file..." $FILE
