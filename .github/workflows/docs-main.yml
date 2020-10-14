@@ -24,4 +24,4 @@ jobs:
         node-version: '12.x'
     - run: |
         npm install postman2openapi
-        postman2openapi GWS-DOCS.postman_collection.json > open.yaml 
+        postman2openapi --help 
