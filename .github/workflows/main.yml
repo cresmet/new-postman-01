@@ -23,11 +23,11 @@ jobs:
           cargo install --git https://github.com/kevinswiber/postman2openapi --features binary
           postman2openapi GWS-DOCS.postman_collection.json > $FILE
           echo "printing the file..."
-          
+
     name: Write Version to File
       steps:
         - uses: actions/checkout@master
-        - name: Update version
+        - name: Update version 2
             id: version
           uses: brettdorrans/write-version-to-file@master
           with:
