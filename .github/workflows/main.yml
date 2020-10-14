@@ -23,13 +23,7 @@ jobs:
           cargo install --git https://github.com/kevinswiber/postman2openapi --features binary
           postman2openapi GWS-DOCS.postman_collection.json > $FILE
           echo "printing the file..."
-
-    name: Push changes
-      if: steps.commit.outputs.push == 'true'
-      uses: ad-m/github-push-action@master
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-
+          
     name: Write Version to File
       steps:
         - uses: actions/checkout@master
