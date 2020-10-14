@@ -36,19 +36,14 @@ jobs:
       - name: Commit file
         id: commit
         run: |
-          git config --local user.email "action@github.com"
-          git config --local user.name "github-actions"
-          git add --all
-          if [-z "$(git status --porcelain)"]; then
-            echo "::set-output name=push::false"
+          git config user.email "action@github.com"
+          git config user.name "cresmet"
+          if [[ `git status --porcelain` ]]; then
+            git add .
+            git commit -a -m "add weather data"
+            git remote rm origin
+            git remote add origin https://cresmet:$PUSH_TOKEN@github.com/cresmet/new-postman-01.git
+            git push origin HEAD:master
           else
-            git commit -m "Add changes" -a
-            echo "::set-output name=push::true"
-          fi
-        shell: bash
-
-      - name: Push changes
-        if: steps.commit.outputs.push == 'true'
-        uses: ad-m/github-push-action@master
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}    
+            echo 'unable to detech changes'
+          fi  
