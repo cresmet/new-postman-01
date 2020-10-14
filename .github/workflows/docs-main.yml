@@ -24,4 +24,4 @@ jobs:
         node-version: '12.x'
     - run: |
         npm install postman2openapi
-        postman2openapi -h 
+        npx postman2openapi -h 
