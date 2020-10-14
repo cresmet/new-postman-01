@@ -18,12 +18,7 @@ jobs:
         with:
           persist-credentials: false
           fetch-depth: 0
-
-      - uses: actions/checkout@master
-         with:
-          persist-credentials: false
-          fetch-depth: 0     
-
+          
       - uses: actions-rs/toolchain@v1
         with:
           toolchain: stable
