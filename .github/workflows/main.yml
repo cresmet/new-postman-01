@@ -38,7 +38,8 @@ jobs:
           cargo install --git https://github.com/kevinswiber/postman2openapi --features binary
           postman2openapi GWS-DOCS.postman_collection.json > $FILE
           echo "printing the file..." $FILE
-          cp $FILE ./docs/open-api_`date +"%s"`.yaml
+          echo "copying the file to archive directory"
+          cp $FILE ./archive/open-api_`date +"%s"`.yaml
     
       - name: Commit the file
         id: commit
