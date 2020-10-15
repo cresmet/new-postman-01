@@ -37,7 +37,7 @@ jobs:
           echo "checking for file..."
           FILE=./docs/open-api.yaml
           if [ -f "$FILE" ]; then
-            cp open-api.yaml ./archive/open-api_`date +"%Y%m%d"`.yaml
+            cp $FILE ./archive/open-api_`date +"%Y%m%d"`.yaml
             echo "building the file..."
             
             find . -type f -iname "*postman_collection.json"
