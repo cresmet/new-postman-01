@@ -35,7 +35,7 @@ jobs:
         id: postman2openapi
         run: |
           echo "checking for file"
-          FILE=.docs/open-api.yaml
+          FILE=./docs/open-api.yaml
           echo "here.."
           if [ -f "$FILE" ]; then
               echo "$FILE exists. Done for today."
