@@ -36,7 +36,7 @@ jobs:
         id: postman2openapi
         run: |
           FILE=open-api.yaml
-          cargo install --git https://github.com/kevinswiber/postman2openapi --features binary
+          cargo install postman2openapi --features binary
           postman2openapi GWS-DOCS.postman_collection.json > $FILE
           echo "printing the file..." $FILE
     
@@ -58,3 +58,4 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           branch: ${{ github.ref }}
+           
