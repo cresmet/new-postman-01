@@ -40,8 +40,13 @@ jobs:
           if [ -f "$FILE" ]; then
               echo "$FILE exists. Done for today."
           else
-            echo "building the file"       
-            echo "printing the file..." $FILE
+            echo "building the file"
+            
+            cargo install --git https://github.com/kevinswiber/postman2openapi --features binary
+            postman2openapi GWS-DOCS.postman_collection.json > open-api.yaml
+            echo "copying file to directory"
+            cp open-api.yaml ./docs
+
             echo "copying the file to archive directory"       
           fi
       - name: Commit the file
