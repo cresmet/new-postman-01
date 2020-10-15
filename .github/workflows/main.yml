@@ -31,25 +31,27 @@ jobs:
             target
           key: ${{ runner.os }}-cargo-${{ hashFiles('**/Cargo.lock') }}
 
-      - name: Convert postman collection to open api2
+      - name: Convert postman collection to open api
         id: postman2openapi
         run: |
-          echo "checking for file"
+          echo "checking for file..."
           FILE=./docs/open-api.yaml
-          echo "here.."
           if [ -f "$FILE" ]; then
-              echo "$FILE exists. Done for today."
-          else
+            cp open-api.yaml ./archive/open-api_`date +"%Y%m%d"`.yaml
             echo "building the file..."
+            
             find . -type f -iname "*postman_collection.json"
             #the_file=find . -type f -iname "*postman_collection.json"
             #echo $the_file
+            
             cargo install --git https://github.com/kevinswiber/postman2openapi --features binary
             postman2openapi GWS-DOCS.postman_collection.json > open-api.yaml
             echo "copying file to directory"
             cp open-api.yaml ./docs
 
-            echo "copying the file to archive directory"       
+            echo "copying the file to archive directory"
+          else
+            echo "nothing to do here..."       
           fi
       - name: Commit the file
         id: commit
