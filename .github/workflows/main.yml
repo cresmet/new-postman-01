@@ -52,8 +52,8 @@ jobs:
             git commit -m "Add changes" -a
             echo "::set-output name=push::true"
           fi
-          
-      - name: Push changes
+
+      - name: Save file to repo
         uses: ad-m/github-push-action@master
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
