@@ -34,6 +34,7 @@ jobs:
       - name: Convert postman collection to open api
         id: postman2openapi
         run: |
+          echo "checking for file"
           FILE=.docs/open-api.yaml
           if [ -f "$FILE" ];then
               echo "$FILE exists. Done for today."
@@ -42,7 +43,7 @@ jobs:
             postman2openapi GWS-DOCS.postman_collection.json > $FILE
             echo "printing the file..." $FILE
             echo "copying the file to archive directory"
-            cp $FILE ./archive/open-api_`date +"%s"`.yaml
+            
           fi
       - name: Commit the file
         id: commit
