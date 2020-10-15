@@ -36,6 +36,7 @@ jobs:
         run: |
           echo "checking for file"
           FILE=.docs/open-api.yaml
+          echo "here.."
           if [ -f "$FILE" ]; then
               echo "$FILE exists. Done for today."
           else
