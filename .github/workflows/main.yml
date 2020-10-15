@@ -20,11 +20,10 @@ jobs:
           persist-credentials: false
           fetch-depth: 0
         env:
-          GITHUB_TOKEN: ${{ secrets.PUSH_TOKEN }} 
+          GITHUB_TOKEN: ${{ secrets.PUSH_TOKEN }}         
       - uses: actions-rs/toolchain@v1
         with:
           toolchain: stable
-
       - uses: actions/cache@v2
         with:
           path: |
@@ -32,7 +31,10 @@ jobs:
             ~/.cargo/git
             target
           key: ${{ runner.os }}-cargo-${{ hashFiles('**/Cargo.lock') }}
-      - run: |
+
+      - name: build file
+        id: build
+         run: |
           FILE=open-api.yaml
           cargo install --git https://github.com/kevinswiber/postman2openapi --features binary
           postman2openapi GWS-DOCS.postman_collection.json > $FILE
