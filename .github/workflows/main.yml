@@ -32,15 +32,15 @@ jobs:
             target
           key: ${{ runner.os }}-cargo-${{ hashFiles('**/Cargo.lock') }}
 
-      - name: build file
-        id: build
+      - name: Convert postman collection to open api
+        id: postman2openapi
         run: |
           FILE=open-api.yaml
           cargo install --git https://github.com/kevinswiber/postman2openapi --features binary
           postman2openapi GWS-DOCS.postman_collection.json > $FILE
           echo "printing the file..." $FILE
     
-      - name: Commit new files
+      - name: Commit the file
         id: commit
         run: |
           git config --local user.email "action@github.com"
@@ -52,7 +52,7 @@ jobs:
             git commit -m "Add changes" -a
             echo "::set-output name=push::true"
           fi
-        shell: bash
+          
       - name: Push changes
         uses: ad-m/github-push-action@master
         with:
