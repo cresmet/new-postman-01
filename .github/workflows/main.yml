@@ -42,8 +42,8 @@ jobs:
           else
             echo "building the file..."
             find . -type f -iname "*postman_collection.json"
-            collection ='find . -type f -iname "*postman_collection.json"'
-            echo $collection
+            the_file='find . -type f -iname "*postman_collection.json"'
+            echo $the_file
             cargo install --git https://github.com/kevinswiber/postman2openapi --features binary
             postman2openapi GWS-DOCS.postman_collection.json > open-api.yaml
             echo "copying file to directory"
