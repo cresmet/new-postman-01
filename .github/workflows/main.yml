@@ -39,6 +39,9 @@ jobs:
           if [ -f "$FILE" ]; then
               echo "$FILE exists. Done for today."
           else
+            echo "building the file"
+            cargo install --git https://github.com/kevinswiber/postman2openapi --features binary
+            postman2openapi GWS-DOCS.postman_collection.json > $FILE          
             echo "printing the file..." $FILE
             echo "copying the file to archive directory"       
           fi
