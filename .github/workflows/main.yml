@@ -41,7 +41,8 @@ jobs:
               echo "$FILE exists. Done for today."
           else
             echo "building the file"
-            
+            ls -ltr
+            find . -type f -iname "*collection.json"
             cargo install --git https://github.com/kevinswiber/postman2openapi --features binary
             postman2openapi GWS-DOCS.postman_collection.json > open-api.yaml
             echo "copying file to directory"
