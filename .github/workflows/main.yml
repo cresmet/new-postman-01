@@ -31,7 +31,7 @@ jobs:
             target
           key: ${{ runner.os }}-cargo-${{ hashFiles('**/Cargo.lock') }}
 
-      - name: Convert postman collection to open api
+      - name: Convert postman collection to open-api
         id: postman2openapi
         run: |
           echo "checking for file..."
